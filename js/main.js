@@ -23,7 +23,7 @@ const usernameElem = document.querySelector('.user-name');
 const listUsers = [
   {
     id: '01',
-    email: 'maks@MediaList.com', 
+    email: 'nick@MediaList.com', 
     password: '12345',
     dispalyName: 'NickJS'
   },
@@ -37,15 +37,17 @@ const listUsers = [
 
 const setUsers = { //объект для управления настройками 
   user: null,
+
   logIn(email, password, handler) { //вывод данных
     const user = this.getUser(email);
     if(user && user.password === password){
       this.authorisetUser(user);
+      handler();
     } else {
       alert('Пользователь с такими данными не найден');
     }
-    
   },
+
   logOut() {
     console.log('Выход: ');
 
@@ -53,7 +55,7 @@ const setUsers = { //объект для управления настройка
 
   signUp(email, password, handler) {
     if(!this.getUser(email)){
-      const user = {email, password, dispalyName: email.split('@')[1]};
+      const user = {email, password, dispalyName: email.split('@')[0]};
       listUsers.push(user);
       this.authorisetUser(user);
       handler();
